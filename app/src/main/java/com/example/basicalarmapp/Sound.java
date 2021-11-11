@@ -31,6 +31,7 @@ public class Sound extends Service {
         //mediaPlayer = MediaPlayer.create(this, R.raw.sound);
         if( id == 1){
             mediaPlayer = MediaPlayer.create(this, R.raw.sound);
+            mediaPlayer.setLooping(true);
             mediaPlayer.start();
             id = 0;
         } else if (id ==0){

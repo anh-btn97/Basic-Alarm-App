@@ -16,9 +16,9 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-    public static PendingIntent pendingIntent;
-    public static Intent intent;
-    public static Intent returnIntent(Context context){
+    public PendingIntent pendingIntent;
+    public Intent intent;
+    /*public static Intent returnIntent(Context context){
         if(intent != null){
             return intent;
         }else {
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             pendingIntent = PendingIntent.getBroadcast(context, 0, returnIntent(context), PendingIntent.FLAG_UPDATE_CURRENT);
             return pendingIntent;
         }
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +45,14 @@ public class MainActivity extends AppCompatActivity {
         TimePicker timePicker = (TimePicker)findViewById(R.id.timePicker);
         Calendar calendar = Calendar.getInstance();
         AlarmManager alarmManager =(AlarmManager)getSystemService(ALARM_SERVICE);
-        //intent = new Intent(MainActivity.this, AlarmReceiver.class);
-
-
-
-
+        intent = new Intent(getApplicationContext(), AlarmReceiver.class);
         btnSettimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("anh", "before set time" + calendar.getTimeInMillis());
                 calendar.set(Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
                 calendar.set(Calendar.MINUTE, timePicker.getCurrentMinute());
-
+                Log.i("anh", "after set time" + calendar.getTimeInMillis());
                 int hour = timePicker.getCurrentHour();
                 int minute = timePicker.getCurrentMinute();
 
@@ -67,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
                 if(minute <10){
                     string_minute = "0" + String.valueOf(minute);
                 }
-                returnIntent(MainActivity.this).putExtra("status", "on");
-                //pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), returnPendingIntent(MainActivity.this));
-
+                intent.putExtra("status", "on");
+                pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                Log.i("anh", "start alarm" + calendar.getTimeInMillis());
                 txtHienThi.setText("Alarm set for: " + string_hour + ":" + string_minute);
             }
         });
@@ -78,12 +75,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 txtHienThi.setText("Stop");
-                if(returnPendingIntent(MainActivity.this) != null)
+                if(pendingIntent != null)
                 {
                     Log.e("anh","sound off");
-                    alarmManager.cancel(returnPendingIntent(MainActivity.this));
-                    returnIntent(MainActivity.this).putExtra("status","off");
-                    sendBroadcast(returnIntent(MainActivity.this));
+                    alarmManager.cancel(pendingIntent);
+                    intent.putExtra("status","off");
+                    sendBroadcast(intent);
 
                 }
             }
