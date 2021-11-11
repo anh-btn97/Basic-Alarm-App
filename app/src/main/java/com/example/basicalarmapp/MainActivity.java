@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button btnSettimer = (Button)findViewById(R.id.btnSetTimer);
         Button btnCancel = (Button)findViewById(R.id.btnCancel);
-        TextView txtHienThi = (TextView)findViewById(R.id.textView);
+        //TextView txtHienThi = (TextView)findViewById(R.id.textView);
         TimePicker timePicker = (TimePicker)findViewById(R.id.timePicker);
         Calendar calendar = Calendar.getInstance();
         AlarmManager alarmManager =(AlarmManager)getSystemService(ALARM_SERVICE);
@@ -68,13 +68,13 @@ public class MainActivity extends AppCompatActivity {
                 pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
                 Log.i("anh", "start alarm" + calendar.getTimeInMillis());
-                txtHienThi.setText("Alarm set for: " + string_hour + ":" + string_minute);
+                //txtHienThi.setText("Alarm set for: " + string_hour + ":" + string_minute);
             }
         });
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtHienThi.setText("Stop");
+                //txtHienThi.setText("Stop");
                 if(pendingIntent != null)
                 {
                     Log.e("anh","sound off");
