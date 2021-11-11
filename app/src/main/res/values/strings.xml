@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Basic Alarm App</string>
+
+    <!--  Alert Alarm Activity/Fragment -->
+    <string name="remindme">Remind me after 10 minutes</string>
+    <string name="dismiss">Dismiss</string>
 </resources>

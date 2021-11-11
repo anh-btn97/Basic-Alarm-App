@@ -34,9 +34,12 @@ public class Sound extends Service {
             mediaPlayer.start();
             id = 0;
         } else if (id ==0){
-            mediaPlayer.stop();
-            mediaPlayer.reset();
+            if(mediaPlayer!= null) {
+                mediaPlayer.stop();
+                mediaPlayer.reset();
+            }
         }
+
         return START_NOT_STICKY;
     }
 }
