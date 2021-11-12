@@ -2,6 +2,7 @@
     <string name="app_name">Basic Alarm App</string>
     <string name="days">Days</string>
     <string name="time">Time</string>
+    <string name="selected_time">Selected Time</string>
     <!-- Days -->
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>

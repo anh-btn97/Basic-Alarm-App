@@ -46,8 +46,21 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/divider" />
 
-
         <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAlignment="center"
+            android:text="@string/selected_time"
+            tools:text="Selected Time"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/divider" />
+
+        <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -206,7 +219,7 @@
                     tools:text="Sunday" />
             </TableRow>
 
-        </TableLayout>
+        </TableLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"
